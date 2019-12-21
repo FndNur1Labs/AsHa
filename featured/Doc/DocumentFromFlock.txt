@@ -1,0 +1,297 @@
+Notes
+Function parameter 'path' should be passed by reference
+solution : 
+std::string path
+
+The scope of the variable 'varname' can be reduced.
+https://refactoring.com/catalog/reduceScopeOfVariable.html
+===========================================================================================================================================================
+For fixed the bug
+libevent
+http://installion.co.uk/ubuntu/vivid/main/l/libevent-2.0-5/uninstall/index.html
+ 
+mongo-db
+sudo rm /etc/apt/sources.list.d/mongodb*.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+===========================================================================================================================================================
+Git Command:
+git tag -d [name]
+git push origin :refs/tags/<tag-name>
+===========================================================================================================================================================
+How to made Secure bootstrap?
+This made by idea of @Hatta self when he think to secure
+made files name .bat and directory to put blockchain
+put this "[coin-qt] -datadir=f:\Wallet\bvone\data" edit f:\Wallet\bvone\data to your directory for place secure blockchain
+save as example aria_run.bat
+run that....and drink of milk hohoho
+Original Video:https://www.youtube.com/watch?v=nM50XtxxI0k
+===========================================================================================================================================================
+How to create stake system
+run 2 seed and 1 wallet for make stake online
+run 2 seed until max coins of pow and prepare for stake wallet to run
+waiting 1 day for mature of wallet sync and help solving block. 24 hour wallet need online for strong network
+prepare client wallet[this not 24 hour run]. happy try
+
+Chunk Dev
+===========================================================================================================================================================
+HardFork Procedure
+For Owner Coins.
+Prepare VPS for our access[this temporary] after setting tokens
+We give the key for your coins[don't lose it]
+Patient wait until finish
+Got Source[need pay]/used Apps for linux
+For Developer
+Access to vps
+Hardfork source put vps[rebase]
+Produce new hash and markle
+Put new codebase[hardcode]/for old need upgrade payment![real aria code]
+Give key for coins
+Logout and Finish
+===========================================================================================================================================================
+Installation
+Prepare
+ 
+apt install build-essential libtool autotools-dev automake pkg-config libssl-dev bsdmainutils libboost-all-dev libminiupnpc-dev libzmq3-dev libevent-pthreads-2.0-5
+ 
+For QT
+apt install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev
+ 
+ 
+Make
+git clone this https://bitbucket.org/nur1labs/aria/src/master/
+cd aria
+chmod 755 -R newaria
+cd newaria
+./aria.sh && ./configure CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/include" LDFLAGS="-L/usr/local/BerkeleyDB.4.8/lib" --enable-cxx --disable-shared --disable-tests
+another for compability OS and Client[for user only not seed] : 
+./aria.sh && ./configure --with-incompatible-bdb --enable-cxx --disable-shared --enable-hardening --disable-tests --without-gui
+./aria.sh && ./configure CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/include" LDFLAGS="-L/usr/local/BerkeleyDB.4.8/lib" --enable-cxx --disable-shared --enable-hardening --disable-tests
+[install libdb-dev libdb++-dev]
+make or make -j4 
+make install
+===========================================================================================================================================================
+Windows Install[Cross Compiler]
+Win 64bit
+apt install g++-mingw-w64-x86-64 mingw-w64-x86-64-dev
+cd depends
+make HOST=x86_64-w64-mingw32
+cd ..
+./autogen.sh # not required when building from tarball
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
+make
+
+Win 32bit
+apt install g++-mingw-w64-i686 mingw-w64-i686-dev
+cd depends
+make HOST=i686-w64-mingw32
+cd ..
+./autogen.sh # not required when building from tarball
+CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=/
+make
+For specific folder
+make install DESTDIR=/coins/aria/x64
+===========================================================================================================================================================
+WineHQ - Debian
+dpkg --add-architecture i386
+wget -nc https://dl.winehq.org/wine-builds/Release.key
+apt-key add Release.key
+Next add the repository to /etc/apt/sources.list or create a *.list under /etc/apt/sources.list.d/ with the following content:
+deb https://dl.winehq.org/wine-builds/debian/ DISTRO main
+with DISTRO being either wheezy, jessie, stretch, buster or sid
+apt update
+apt install --install-recommends winehq-stable
+===========================================================================================================================================================
+openssl ecparam -genkey -name secp256k1 -out alertkey.pem
+openssl ec -in alertkey.pem -text > alertkey.hex
+openssl ecparam -genkey -name secp256k1 -out testnetalert.pem
+openssl ec -in testnetalert.pem -text > testnetalert.hex
+openssl ecparam -genkey -name secp256k1 -out genesiscoinbase.pem
+openssl ec -in genesiscoinbase.pem -text > genesiscoinbase.hex
+cat alertkey.hex
+===========================================================================================================================================================
+generate:
+openssl ecparam -genkey -name secp256k1 -out tmp/data.pem
+get private key:
+openssl ec -in tmp/data.pem -outform DER|tail -c +8|head -c 32|xxd -p -c 32
+get public key:
+openssl ec -in tmp/data.pem -pubout -outform DER|tail -c 65|xxd -p -c 65
+===========================================================================================================================================================
+Gitian Install
+apt install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm
+
+Debian : 
+wget http://archive.ubuntu.com/ubuntu/pool/universe/v/vm-builder/vm-builder_0.12.4+bzr489.orig.tar.gz
+echo "ec12e0070a007989561bfee5862c89a32c301992dd2771c4d5078ef1b3014f03 vm-builder_0.12.4+bzr489.orig.tar.gz" | sha256sum -c
+# (verification -- must return OK)
+tar -zxvf vm-builder_0.12.4+bzr489.orig.tar.gz
+cd vm-builder-0.12.4+bzr489
+sudo python setup.py install
+cd ..
+===========================================================================================================================================================
+Libevent : for plugin libevent
+git clone https://github.com/libevent/libevent.git
+cd libevent
+./autogen.sh && ./configure && make
+make install (as root)
+===========================================================================================================================================================
+Got the Barkley DB 4.8
+wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'
+tar -xzvf db-4.8.30.NC.tar.gz
+cd db-4.8.30.NC/build_unix/
+../dist/configure --enable-cxx --disable-shared --with-pic
+make install (as root)
+===========================================================================================================================================================
+For zMin protocol for to used between platform AriA:
+example we wanna mint/stake called on used zMint example you wanna do 100k minting possible but put by roles
+
+100k => 5k * n = result
+
+but different we need sacrifice 5k to keep alive network or up to denom you choose. denom is method private minting by network
+keep alive by sacrifice the denom value. you can input manual or automatic. but it will split off. and resul ever denom unused
+===========================================================================================================================================================
+Joey : bar 2
+saya : bar 1 1/2
+izuma : 0
+kazuya : 0
+inaka : 0
+tatsu : 0
+kakek : full
+===========================================================================================================================================================
+/tip : discord tip
+w. : waifubot
+% : senpaibot
+! : mee6
+/kyte : kyte bot
+$ : invitebot
++ : kawaibot
+* : marriagebot
+m! : memberbot
+p! : pokemon
+& : check trans
+q : idle-rpg
+@Ohtred : ohtred
+. : due
+u$ : mudae
+
+gksudo nautiulus
+===========================================================================================================================================================
+Redis-Cli
+set VID0-BugsCRC "hello im wanna tell you bugs on you seek warning on AriA mark on trading is means something trouble on circle cli not us.....we tell why
+cause that bug on something not our work bugs....team fine self test. so keep calm AriA network fine"
+===========================================================================================================================================================
+qi = inventory
+qs = status exp
+qa [no] = go adventure
+quse = euqip items
+qmerchall = sell all except equip
+qdeaths = list dead
+qupgrade = for upgrade
+qm = shop
+===========================================================================================================================================================
+rTw Project
+Droplet Name: ubuntu-s-2vcpu-4gb-nyc1-01 [wallet]
+IP Address: 142.93.246.46
+Username: root
+Password: 5y5t3-RtW
+
+Droplet Name: ubuntu-s-2vcpu-4gb-nyc1-01 [explorer]
+IP Address: 142.93.196.107
+Username: root
+Password: 5y5t3-RtW0
+
+Droplet Name: ubuntu-s-2vcpu-4gb-sfo2-01
+IP Address: 138.68.242.130
+Username: root
+Password: 5y5t3-RtW1
+Mysql:5y5t3m-28C92a3199020
+
+[11:08, 11/23/2018] +54 9 342 478-8480: https://m5280.contaboserver.net:2083/
+[11:08, 11/23/2018] +54 9 342 478-8480: danibank 
+[11:08, 11/23/2018] +54 9 342 478-8480: %%#&Cv~MsRB2
+
+URL:  https: //clientes.nuthost.com/
+Email: danilojoaquin70@gmail.com
+Clave: yo4oalFQo78KRloMpNeg3iWN
+===========================================================================================================================================================
+68.183.177.70
+IP Address: 157.230.85.46
+142.93.51.167
+Password: 5y5t3-FrU1t
+===========================================================================================================================================================
+Wikimedia guide:
+MediaWiki:Sidebar = menu
+===========================================================================================================================================================
+lv 1 = 300
+lv 2 = 904
+===========================================================================================================================================================
+edit updates go to main.cpp. search
+if (!CLIENT_VERSION_IS_RELEASE)
+        strStatusBar = _("Upgraded needed Version Subsystem 4.3 is out! - do not use for staking, merchant and masternode!");
+===========================================================================================================================================================
+Port Important : 80, 22, [rpc], [p2p]
+40001=bv1
+40002=rtw
+40003=norin
+40004=xtreme
+40005=xtreme
+===========================================================================================================================================================
+        printf("min nBit:  %08x\n", bnProofOfWorkLimit.GetCompact());
+        printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+        printf("genesis.nTime = %u \n", genesis.nTime);
+        printf("genesis.nNonce = %u \n", genesis.nNonce);
+		printf("genesis.Markle = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+===========================================================================================================================================================
+Yiimp		
+http://142.93.82.93/site/myadmin
+===========================================================================================================================================================
+Name Engine:MuBdI
+CoinMain:Imanity
+
+MUBDI
+
+piv
+bit
+
+License
+// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2010-2019 Nur1Labs.Ltd
+// Distributed under the MIT software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php
+===========================================================================================================================================================
+echo $RANDOM //PchMessage
+===========================================================================================================================================================
+PHPAdmin
+sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
+sudo a2enconf phpmyadmin.conf
+sudo service apache2 reload
+===========================================================================================================================================================
+db.createUser( { user: "frudataexp", pwd: "fruyE3xp!0reR", roles: [ "readWrite" ] } )
+https://en.wikipedia.org/wiki/A_Sister%27s_All_You_Need
+===========================================================================================================================================================
+MuBdI Blockchain
+5y5t3-RtW [Recycle]
+5y5t3-FrU [Fruit]
+Pin:678944
+
+Rebase : 14671-14672 - 13671 13717
+testnet : 25121 - 17808 25221
+Encryption keys generated successfully.
+Personal access client created successfully.
+Client ID: 1
+Client Secret: 2N3FxwIq2LkqVAEKE15RdVL3QWELehPHCo6zHlXl
+Password grant client created successfully.
+Client ID: 2
+Client Secret: bWUOYKOsTsw4nDB1Ag4bmrxTJgeGQNg8LW4E7OZw
+3NuXeqsHnvTrVzjgSWhboJzNanE85SzPes
+0xa959d36c72b1881c46621e5ab425eae0d548f6cf
+5y5t3m-28C92a3199020
+https://en.wikipedia.org/wiki/Oreshura
+https://en.wikipedia.org/wiki/Amagi_Brilliant_Park
+
+[22:10, 3/16/2019] Joey: 60.50.128.213
+[22:10, 3/16/2019] Joey: port 2233
+admin4321
+
+bitsend
+mudzil
